@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>EVMS Dashboard - Eyeson Virtual Management System</title>
+
+	<link rel="icon" href="./assets/images/icons/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="./assets/images/icons/cropped-favicon-192x192.png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="./assets/images/icons/cropped-favicon-192x192.png" />
+    <meta name="msapplication-TileImage" content="./assets/images/icons/cropped-favicon-270x270.png" />
+
+
+	<!-- Global stylesheets -->
+	<link href="./assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
+	<link href="./assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="./assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<link href="./assets/css/custom.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	
+	<!-- Core JS files -->
+	<script src="./assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="./assets/js/vendor/axios/axios.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="./assets/js/app.js"></script>
+	<script src="./assets/js/api.js"></script>
+	<script src="./assets/js/custom.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body class="bg-dark">
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Inner content -->
+			<div class="content-inner">
+
+				<!-- Content area -->
+				<div class="content d-flex justify-content-center align-items-center">
+
+					<div class="login-form" id="login">
+						<div class="card mb-0">
+							<div class="card-body">
+								<div class="text-center mb-3">
+									<div class="d-inline-flex align-items-center justify-content-center mb-4 mt-2">
+										<img src="./assets/images/brands/logo.png" class="h-95px" alt="">
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Username</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="text" id="username" class="form-control" placeholder="your@email.com">
+										<div class="form-control-feedback-icon">
+											<i class="ph-user-circle text-muted"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Password</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="password" id="password" class="form-control" placeholder="•••••••••••">
+										<div class="form-control-feedback-icon">
+											<i class="ph-lock text-muted"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="d-flex align-items-center mb-3">
+									<label class="form-check">
+										<input type="checkbox" id="remember" name="remember" class="form-check-input" checked>
+										<span class="form-check-label">Remember</span>
+									</label>
+
+									<a href="#" onclick="gotoRecoveryPassword();" class="ms-auto">Forgot password?</a>
+								</div>
+
+								<div class="mb-3">
+									<button onclick="f_auth();" class="btn btn-primary w-100">Sign in</button>
+								</div>
+
+								<div class="text-center text-muted content-divider mb-3">
+									<span class="px-2">Don't have an account?</span>
+								</div>
+
+								<div class="mb-3">
+									<a href="#" onclick="gotoRegistration();"    class="btn btn-light w-100">Sign up</a>
+								</div>
+								<span class="form-text text-center text-muted">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="login-form" id="recovery_password" hidden>
+						<div class="card mb-0">
+							<div class="card-body">
+								<div class="text-center mb-3">
+									<div class="d-inline-flex bg-primary bg-opacity-10 text-primary lh-1 rounded-pill p-3 mb-3 mt-1">
+										<i class="ph-arrows-counter-clockwise ph-2x"></i>
+									</div>
+									<h5 class="mb-0">Password recovery</h5>
+									<span class="d-block text-muted">We'll send you instructions in email</span>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Your email</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="email" id="email_recovery" class="form-control" placeholder="your@email.com">
+										<div class="form-control-feedback-icon">
+											<i class="ph-at text-muted"></i>
+										</div>
+									</div>
+								</div>
+
+								<button onclick="reset_password();" class="btn btn-primary w-100">
+									<i class="ph-arrow-counter-clockwise me-2"></i>
+									Reset password
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="login-form" id="registration" hidden>
+						<div class="card mb-0">
+							<div class="card-body">
+								<div class="text-center mb-3">
+									<div class="d-inline-flex align-items-center justify-content-center mb-4 mt-2">
+										<img src="./assets/images/brands/logo.png" class="h-95px" alt="">
+									</div>
+							  		<h5 class="mb-0">Create account</h5> 
+<!-- 									<span class="d-block text-muted">All fields are required</span> -->
+								</div>
+
+<!-- 								<div class="text-center text-muted content-divider mb-3">
+									<span class="px-2">Your credentials</span>
+								</div> -->
+
+								<div class="mb-3">
+									<label class="form-label">Username</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="text" class="form-control" placeholder="JohnDoe">
+										<div class="form-control-feedback-icon">
+											<i class="ph-user-circle text-muted"></i>
+										</div>
+									</div>
+									<!-- <div class="form-text text-danger"><i class="ph-x-circle me-1"></i> This username is already taken</div> -->
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Password</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="password" class="form-control" placeholder="•••••••••••">
+										<div class="form-control-feedback-icon">
+											<i class="ph-lock text-muted"></i>
+										</div>
+									</div>
+								</div>
+<!-- 
+								<div class="text-center text-muted content-divider mb-3">
+									<span class="px-2">Your contacts</span>
+								</div> -->
+
+								<div class="mb-3">
+									<label class="form-label">Your email</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="text" class="form-control" placeholder="your@email.com">
+										<div class="form-control-feedback-icon">
+											<i class="ph-at text-muted"></i>
+										</div>
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label">Repeat email</label>
+									<div class="form-control-feedback form-control-feedback-start">
+										<input type="text" class="form-control" placeholder="your@email.com">
+										<div class="form-control-feedback-icon">
+											<i class="ph-at text-muted"></i>
+										</div>
+									</div>
+								</div>
+
+<!-- 								<div class="text-center text-muted content-divider mb-3">
+									<span class="px-2">Additions</span>
+								</div> -->
+
+<!-- 								<div class="mb-3">
+									<label class="form-check mb-2">
+										<input type="checkbox" name="remember" class="form-check-input" checked>
+										<span class="form-check-label">Send me <a href="#">&nbsp;test account settings</a></span>
+									</label> -->
+
+									<label class="form-check mb-2">
+										<input type="checkbox" name="remember" class="form-check-input" checked>
+										<span class="form-check-label">Subscribe to monthly newsletter</span>
+									</label>
+
+									<label class="form-check">
+										<input type="checkbox" name="remember" class="form-check-input">
+										<span class="form-check-label">Accept <a href="#">&nbsp;terms of service</a></span>
+									</label>
+								</div>
+
+								<button type="submit" class="btn btn-teal w-100">Register</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /inner content -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+</body>
+</html>
