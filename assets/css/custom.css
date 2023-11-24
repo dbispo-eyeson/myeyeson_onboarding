@@ -12,3 +12,7 @@
     text-align: center;
     color: #999999;
 }
+
+.content-height {
+    height: 100vh;
+}
