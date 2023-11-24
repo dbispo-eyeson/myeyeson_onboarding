@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <header>
+    <h1>Dashboard</h1>
+  </header>
+  <main>
+    <menu></menu>
+
+  </main>
+  
+</body>
+<script>
+async function loadPage() {
+  const box = document.querySelector("menu");
+
+  try {
+    const response = await fetch('menu.html');
+    
+
+    const html = await response.text();
+    console.log(html)
+
+    box.innerHTML = html;
+
+    return true
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+  </script>
+</html>

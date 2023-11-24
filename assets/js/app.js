@@ -616,7 +616,7 @@ window.addEventListener('load', function() {
 const gotoRecoveryPassword = () => {
 
     const login = document.getElementById('login');
-    const recoveryPassword= document.getElementById('recovery_password');
+    const recoveryPassword = document.getElementById('recovery_password');
     const registration = document.getElementById('registration');
     recoveryPassword.removeAttribute("hidden");
     login.setAttribute('hidden', true);
@@ -645,3 +645,6 @@ const gotoLogin = () => {
     registration.setAttribute('hidden', true);
 
 };
+
+
+
