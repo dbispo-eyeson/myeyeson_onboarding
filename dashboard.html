@@ -33,6 +33,12 @@
 
 	<!-- /theme JS files -->
 
+	<script>
+		function changeCustomer(name = 'Tesla Motors Inc', img = '../../../assets/images/brands/tesla.svg') {
+			$('#name-customers').text(name);
+			$("#img-customers").attr("src", img);
+		}
+	</script>
 </head>
 
 <body>
